@@ -5,12 +5,9 @@
 void iniciarModulo(void);
 
 
-/*
-Desarrollar los prototipos de
-iniciarModulo(),
-avanzar(),
-retroceder(),
-girarDerecha(),
-girarIzquierda()
+//Implementar la función avanzar(uint8_t vel), retroceder(uint8_t vel),girarDerecha() y girarIzquierda() dentro de la librería motorDriver
+void avanzar(uint8_t vel);
+void retroceder(uint8_t vel);
+void girarDerecha(void);
+void girarIzquierda(void);
 
-*/

@@ -63,16 +63,67 @@ void iniciarModulo(void){
     TIM4->CCR3=0;
     // Habilitar el temporizador escribiendo un 1 en los bits 7 y 0 del registro
     TIM4->CR1|= (1 << 7) | (1 << 0);
+}
 
 
+void avanzar(uint8_t vel){
+    GPIOA->CRL |= (1<<5)|(1<<6);// puertos PA5 y PA6 en alta
+    GPIOA->CRL &=~((1<<4)|(1<<7));//puertos PA4 y PA7 en baja
+    if (vel==1){
+        //si vel es igual a 1 se generará una onda PWM con 50%
+        TIM4->CCR4=5000;
+        TIM4->CCR3=5000;
+    }
+    else if(vel==2){
+        //si es igual a 2 se generará una onda PWM con 100%
+        TIM4->CCR4=10000;
+        TIM4->CCR3=10000;       
+    }
+    delay(1000); // esperar 1 s
+    TIM4->CCR4=0;
+    TIM4->CCR3=0;
+}
+
+
+void retroceder(uint8_t vel){
+    GPIOA->CRL &= ~((1<<5)|(1<<6));// puertos PA5 y PA6 en baja
+    GPIOA->CRL |=(1<<4)|(1<<7);//puertos PA4 y PA7 en alta
+    if (vel==1){
+        //si vel es igual a 1 se generará una onda PWM con 50%
+        TIM4->CCR4=5000;
+        TIM4->CCR3=5000;
+    }
+    else if(vel==2){
+        //si es igual a 2 se generará una onda PWM con 100%
+        TIM4->CCR4=10000;
+        TIM4->CCR3=10000;       
+    }
+    delay(1000); // esperar 1 s
+    TIM4->CCR4=0;
+    TIM4->CCR3=0;
+}
+
+
+void girarDerecha(void){
+    GPIOA->CRL &=~((1<<5)|(1<<7)); //puertos PA5 y PA7 en baja
+    GPIOA->CRL |=(1<<5)|(1<<7); // puertos PA4 y PA6 en alta
+    // Generar una onda PWM de 50% de ciclo de trabajo
+    TIM4->CCR4=10000;
+    TIM4->CCR3=10000;  
+    delay(1000); // esperar 1 s
+    TIM4->CCR4=0;
+    TIM4->CCR3=0;
 
 }
-/*
-Implementar el codigo fuente de las fuciones
-iniciarModulo(),
-avanzar(),
-retroceder(),
-girarDerecha(),
-girarIzquierda()
 
-*/
+
+void girarIzquierda(void){
+    GPIOA->CRL |=(1<<5)|(1<<7);//puertos PA5 y PA7 en alta
+    GPIOA->CRL &=~((1<<5)|(1<<7)); //puertos PA4 y PA6 en baja
+    // Generar una onda PWM de 50% de ciclo de trabajo
+    TIM4->CCR4=10000;
+    TIM4->CCR3=10000;  
+    delay(1000); // esperar 1 s
+    TIM4->CCR4=0;
+    TIM4->CCR3=0;
+}
