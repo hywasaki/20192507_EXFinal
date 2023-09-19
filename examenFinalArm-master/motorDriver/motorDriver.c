@@ -30,10 +30,10 @@ void iniciarModulo(void){
     GPIOC->CRH|= (0x2 <<20);  // 001000000000000000000
    
    // valores iniciales en LOW (0 Volt) en los registros GPIOA->CRL,GPIOA->ODR, GPIOC->CRH y GPIOC->ODR.
-    GPIOA->CRL
-    GPIOA->ODR
-    GPIOC->CRH
-    GPIOC->ODR
+    GPIOA->CRL&= ~(0xFFFFFFFF);
+    GPIOA->ODR&= ~(0xFFFFFFFF); 
+    GPIOC->CRH&= ~(0xFFFFFFFF);
+    GPIOC->ODR&= ~(0xFFFFFFFF); 
 
     // puertos PB8 y PB9 como salidas digitales de funciones alternas en el registro GPIOB->CRH
 
@@ -43,7 +43,7 @@ void iniciarModulo(void){
     // CNFy[1:0]: In output mode (MODE[1:0] >00):10: Alternate function output Push-pull
     // MODEy[1:0] 10: Output mode, max speed 2 MHz.
     // 1010 -> A
-    GPIOB->CRH |= ()|();
+    GPIOB->CRH |= (0xA<<0)|(0xA<<4);// 1010 | 10100000
 
 
 
