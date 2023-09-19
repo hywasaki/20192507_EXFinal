@@ -6,8 +6,28 @@
 
 int main(void)
 {
-	/*
-	Desarrollar el flujo principal del programa utilizando las librerias motorDriver y serialUart
-	*/
-	while(1);
+	while(1){
+		if(existeCaracter()){
+			uint8_t instruccion = leerCaracter();
+			if(instruccion=='a'){ //ejecutar avanzar(1)
+				avanzar(1);
+			}
+			else if(instruccion=='w'){//ejecutar avanzar(2)
+				avanzar(2);
+			}
+			else if(instruccion=='b'){//ejecutar retroceder(1)
+				retroceder(1);
+			}
+			else if(instruccion=='s'){//ejecutar retroceder(2)
+				retroceder(2);
+			}
+			else if(instruccion=='q'){//ejecutar girarDerecha()
+				girarDerecha();
+			}
+			else if(instruccion=='e'){//ejecutar girarIzquierda()
+				girarIzquierda();
+			}
+		}
+		
+	}
 }

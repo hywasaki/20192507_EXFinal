@@ -45,7 +45,7 @@ verificar el valor de dicho bit, si es 1 significa que ha llegado un dato al
 microcontrolador y debe retornar un 1; caso contrario debe retornar un 0.
 int existeCaracter(char caracter){ */
 
-int existeCaracter(char caracter){
+int existeCaracter(void){
     if(USART1 -> SR & (1<<5)){
         return 1;
     }
@@ -58,7 +58,7 @@ int existeCaracter(char caracter){
 (RXNE) del registro SR de USART1 sea 0; cuando cambie a 1 se debe terminar el
 bucle; seguidamente se debe retornar el valor de los 8 bits menos significativos
 del registro DR del USART1.*/
-uint8_t leerCaracter(char caracter){
+uint8_t leerCaracter(void){
     while(!(USART1->SR & (1<<5))); // Monitorea el valor del bit 5 dentro del registro SR, Si valor del bit 5 es 1 -> !Verdadero -> Falso
     // Sale del bucle
     // 0xFF es 11111111 en binario
