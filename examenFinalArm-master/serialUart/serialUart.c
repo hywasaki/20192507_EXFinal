@@ -39,8 +39,20 @@ void enviarPalabra(uint8_t cadena[])
     nuevaLinea();
 }
 
-/*
-Implementar las funciones: 
-existeCaracter()
-leerCaracter()
-*/
+/*La función en el .c debe cumplir la siguiente lógica: En el registro SR del
+USART1 el bit nro 5 indica si existe algún dato pendiente de lectura. Usted debe
+verificar el valor de dicho bit, si es 1 significa que ha llegado un dato al
+microcontrolador y debe retornar un 1; caso contrario debe retornar un 0.
+int existeCaracter(char caracter){ */
+
+int existeCaracter(char caracter){
+    if(USART1 -> SR & (1<<5)){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+
+
