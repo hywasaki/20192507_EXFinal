@@ -9,3 +9,7 @@ void enviarPalabra(uint8_t cadena[]);
 // función existeCaracter dentro de la librería serialUart
 // Definir el prototipo en el .h considerando que el valor a devolver será 0 o 1
 int existeCaracter(char caracter);
+
+// leerCaracter dentro de la librería serialUart
+// Definir el prototipo en el .h considerando que devolverá una respuesta de 8 bits.
+uint8_t leerCaracter(char caracter);

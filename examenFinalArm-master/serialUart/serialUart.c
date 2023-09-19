@@ -54,5 +54,17 @@ int existeCaracter(char caracter){
     }
 }
 
+/*La lógica es la siguiente: realiar un bucle que se ejecute mientras el valor del bit 5
+(RXNE) del registro SR de USART1 sea 0; cuando cambie a 1 se debe terminar el
+bucle; seguidamente se debe retornar el valor de los 8 bits menos significativos
+del registro DR del USART1.*/
+uint8_t leerCaracter(char caracter){
+    while(!(USART1->SR & (1<<5))); // Monitorea el valor del bit 5 dentro del registro SR, Si valor del bit 5 es 1 -> !Verdadero -> Falso
+    // Sale del bucle
+    // 0xFF es 11111111 en binario
+    // &0FF devuelve 8 bits menos significativos
+    return USART1->DR & (0xFF);
+}
+
 
 
